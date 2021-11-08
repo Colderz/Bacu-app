@@ -1,0 +1,46 @@
+<resources>
+    <!--  Dashboard  -->
+    <string name="app_name">Balance Currency</string>
+    <string name="dashboad_statistic_card_middle_text">Potrzebujesz</string>
+    <string name="dashboard_statistic_card_left_text">Cele</string>
+    <string name="dashboard_statistic_card_right_text">Zrealizowane</string>
+    <string name="dashboard_statistic_card_bar_left_text">Dzień</string>
+    <string name="dashboard_statistic_card_bar_middle_text">Tydzień</string>
+    <string name="dashboard_statistic_card_bar_right_text">Miesiąc</string>
+    <string name="fragment_dashboard_popular_categories">Popularne kategorie</string>
+    <string name="fragment_dashboard_current_currency">Obecne kursy walut</string>
+    <string name="fragment_dashboard_list_info_pln">1 PLN to</string>
+
+    <!--  Name of currencies  -->
+    <string-array name="cuurency_names">
+        <item>Dolar kanadyjski</item>
+        <item>Frank szwajcarski</item>
+        <item>Korona Czeska</item>
+        <item>Korona Duńska</item>
+        <item>Euro</item>
+        <item>Brytyjski funt szterling</item>
+        <item>Jen</item>
+        <item>Won</item>
+        <item>Peso Meksykańskie</item>
+        <item>Lej</item>
+        <item>Rubel rosyjski</item>
+        <item>Dolar Amerykański</item>
+    </string-array>
+
+    <!--  Currency abbreviations  -->
+    <string-array name="currency_codes">
+        <item>\u0020CAD</item>
+        <item>\u0020CHF</item>
+        <item>\u0020CZK</item>
+        <item>\u0020DKK</item>
+        <item>\u0020EUR</item>
+        <item>\u0020GBP</item>
+        <item>\u0020JPY</item>
+        <item>\u0020KRW</item>
+        <item>\u0020MXN</item>
+        <item>\u0020RON</item>
+        <item>\u0020RUB</item>
+        <item>\u0020USD</item>
+    </string-array>
+
+</resources>

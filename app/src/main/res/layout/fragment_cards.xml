@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background"
+        tools:context=".presentation.ui.cards_screen.CardsFragment">
+
+        <FrameLayout
+            android:id="@+id/fragment_card__notifications_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/background_button_dashboard"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="11dp"
+                android:src="@drawable/ic_question_mark" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fragment_card__option_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/background_button_dashboard"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="9dp"
+                android:src="@drawable/ic_dots" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Karty celów"
+            android:textColor="#2E5A59"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_card__notifications_button"
+            app:layout_constraintTop_toTopOf="@+id/fragment_card__notifications_button" />
+
+        <FrameLayout
+            android:id="@+id/fragment_card__title_section"
+            android:layout_width="123dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rounded_orange_button"
+            android:elevation="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Transport"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="76dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/rounded_bar_background"
+            android:elevation="2dp"
+            android:translationZ="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_card__title_section"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_card__title_section"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_card__title_section">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrow_left" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="76dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/rounded_bar_background"
+            android:elevation="2dp"
+            android:translationZ="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_card__title_section"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_card__title_section"
+            app:layout_constraintTop_toTopOf="@+id/fragment_card__title_section">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrow_right" />
+
+        </FrameLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:paddingHorizontal="25dp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_card__title_section" />
+
+        <FrameLayout
+            android:id="@+id/fragment_card__add_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/rounded_orange_button"
+            android:elevation="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Dodaj cel"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/rounded_rv_background"
+            android:elevation="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_card__add_button">
+
+            <TextView
+                android:id="@+id/title_currency_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="Historia"
+                android:textColor="#2E5A59"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="117dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/order_button"
+                android:elevation="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/title_currency_section"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title_currency_section">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"
+                    android:text="Sortuj wg: "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="1dp"
+                    android:gravity="center_vertical"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:text="Daty"
+                    android:textColor="@android:color/white" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:padding="5dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_down"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

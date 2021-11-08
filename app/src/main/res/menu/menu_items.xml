@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/dashboardFragment"
+        android:icon="@drawable/ic_board"
+        android:title="Panel główny"/>
+
+    <item android:id="@+id/cardsFragment"
+        android:icon="@drawable/ic_card"
+        android:title="Karty celów"/>
+
+    <item android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="Ustawienia"/>
+
+</menu>
