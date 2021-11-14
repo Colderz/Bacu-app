@@ -20,11 +20,35 @@ class AddNewGoalViewModel @Inject constructor(
     val choiceIntervalButton: LiveData<Int>
         get() = _choiceIntervalButton
 
+    private val _openCalendarPickerDialog = MutableLiveData<Event<Boolean>>()
+    val openCalendarPickerDialog: LiveData<Event<Boolean>>
+        get() = _openCalendarPickerDialog
+
     fun nextStep(state: AddGoalState) {
-        _navigateToNextStep.value = Event(state)
+        when(state) {
+            AddGoalState.SET_AMOUNT -> {
+                _navigateToNextStep.value = Event(AddGoalState.SET_INTERVAL)
+            }
+            AddGoalState.SET_INTERVAL -> {
+                _navigateToNextStep.value = Event(AddGoalState.SET_DATE)
+            }
+            AddGoalState.SET_DATE -> {
+                _navigateToNextStep.value = Event(AddGoalState.SET_NAME)
+            }
+            AddGoalState.SET_NAME -> {
+                _navigateToNextStep.value = Event(AddGoalState.SET_DESCRIPTION)
+            }
+            AddGoalState.SET_DESCRIPTION -> {
+
+            }
+        }
     }
 
     fun setIntervalButton(choice: Int) {
         _choiceIntervalButton.value = choice
+    }
+
+    fun openDatePicker() {
+        _openCalendarPickerDialog.value = Event(true)
     }
 }

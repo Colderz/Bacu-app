@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.colderz.project_bacu_app.R
 import com.colderz.project_bacu_app.databinding.DialogAddNewGoalBinding
+import com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.date_picker.DatePickerFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +17,10 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
 
     private var _binding: DialogAddNewGoalBinding? = null
     private val binding get() = _binding!!
+
+    private val requestKey = "REQUEST_KEY"
+    private val selectedDate = "SELECTED_DATE"
+    private val datePickerTag = "DatePickerFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +43,28 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
         viewModel.choiceIntervalButton.observe(viewLifecycleOwner, {
             handleIntervalButtons(it)
         })
+        viewModel.openCalendarPickerDialog.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                openDatePicker()
+            }
+        })
+    }
+
+    private fun openDatePicker() {
+        val datePickerFragment = DatePickerFragment()
+        val supportFragmentManager = requireActivity().supportFragmentManager
+
+        supportFragmentManager.setFragmentResultListener(
+            requestKey,
+            viewLifecycleOwner
+        ) { resultKey, bundle ->
+            if (resultKey == requestKey) {
+                val date = bundle.getString(selectedDate)
+                binding.addGoalLayoutDate.dialogAddGoalOpenCalendar.text = date
+            }
+        }
+        //show
+        datePickerFragment.show(supportFragmentManager, datePickerTag)
     }
 
     private fun initBinding() {
@@ -55,22 +81,24 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun updateAddGoalState(state: AddGoalState) {
-        binding.uiState = state
-        when (state) {
-            AddGoalState.SET_AMOUNT -> {
-                binding.customProgressIndicator.updateProgressView(1)
-            }
-            AddGoalState.SET_INTERVAL -> {
-                binding.customProgressIndicator.updateProgressView(2)
-            }
-            AddGoalState.SET_DATE -> {
-                binding.customProgressIndicator.updateProgressView(3)
-            }
-            AddGoalState.SET_NAME -> {
-                binding.customProgressIndicator.updateProgressView(4)
-            }
-            AddGoalState.SET_DESCRIPTION -> {
-                binding.customProgressIndicator.updateProgressView(5)
+        binding.apply {
+            uiState = state
+            when (state) {
+                AddGoalState.SET_AMOUNT -> {
+                    customProgressIndicator.updateProgressView(1)
+                }
+                AddGoalState.SET_INTERVAL -> {
+                    customProgressIndicator.updateProgressView(2)
+                }
+                AddGoalState.SET_DATE -> {
+                    customProgressIndicator.updateProgressView(3)
+                }
+                AddGoalState.SET_NAME -> {
+                    customProgressIndicator.updateProgressView(4)
+                }
+                AddGoalState.SET_DESCRIPTION -> {
+                    customProgressIndicator.updateProgressView(5)
+                }
             }
         }
     }

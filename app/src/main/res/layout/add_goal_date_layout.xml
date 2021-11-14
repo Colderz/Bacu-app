@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="uiState"
+            type="AddGoalState" />
+
+        <variable
+            name="viewModel"
+            type="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalViewModel" />
+
+        <import type="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalDialogFragment.AddGoalState" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/add_goal_dialog__date_layout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:visibility="@{uiState == AddGoalState.SET_DATE ? View.VISIBLE : View.INVISIBLE}"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_card__done"
+        app:layout_constraintTop_toBottomOf="@+id/custom_progress_indicator">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:gravity="center"
+            android:text="@string/calendar_step_descriprion"
+            android:textColor="#2E5A59"
+            android:textSize="18sp" />
+
+        <FrameLayout
+            android:id="@+id/dialog_add_goal__button_week"
+            touchListener="@{false}"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginHorizontal="130dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/rounded_orange_button"
+            android:backgroundTint="@android:color/white"
+            android:clickable="true"
+            android:elevation="7dp"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/dialog_add_goal__open_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/open_calendar"
+                android:onClick="@{() -> viewModel.openDatePicker()}"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>

@@ -43,4 +43,21 @@
         <item>\u0020USD</item>
     </string-array>
 
+    <!--  AddNewGoalDialog  -->
+    <string name="done">Gotowe!</string>
+    <string name="next">Dalej</string>
+    <string name="open_calendar">Otwórz kalendarz</string>
+    <string name="calendar_step_descriprion">Wybierz przewidywaną datę zakończenia celu</string>
+    <string name="add_goal_description">Dodajesz nowy cel</string>
+    <string name="set_goal_name">Nazwij swój cel</string>
+    <string name="name_of_goal">Nazwa celu</string>
+    <string name="set_goal_interval">Co jaki czas chcesz odkładać na swój cel?</string>
+    <string name="every_day">Codziennie</string>
+    <string name="every_week">Co tydzień</string>
+    <string name="evert_month">Co miesiąc</string>
+    <string name="description">Opis</string>
+    <string name="set_short_description">Wprowadź krótki opis</string>
+    <string name="what_amount">Jaką kwotę potrzebujesz?</string>
+    <string name="amount">Kwota</string>
+
 </resources>

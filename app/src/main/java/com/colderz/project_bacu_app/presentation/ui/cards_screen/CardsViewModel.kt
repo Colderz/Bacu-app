@@ -18,4 +18,5 @@ class CardsViewModel @Inject constructor(
     fun goToAddGoalDialog() {
         _navigateToAddGoalDialog.value = Event(true)
     }
+
 }
