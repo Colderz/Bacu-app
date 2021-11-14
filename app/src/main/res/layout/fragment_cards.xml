@@ -15,7 +15,6 @@
 
         <FrameLayout
             android:id="@+id/fragment_card__notifications_button"
-            touchListener="@{true}"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
@@ -38,7 +37,7 @@
 
         <FrameLayout
             android:id="@+id/fragment_card__option_button"
-            touchListener="@{true}"
+            touchListener="@{false}"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="30dp"
@@ -95,7 +94,7 @@
 
         <FrameLayout
             android:id="@+id/fragment_card__category_button_left"
-            touchListener="@{true}"
+            touchListener="@{false}"
             android:layout_width="76dp"
             android:layout_height="32dp"
             android:layout_marginStart="15dp"
@@ -117,7 +116,7 @@
 
         <FrameLayout
             android:id="@+id/fragment_card__category_button_right"
-            touchListener="@{true}"
+            touchListener="@{false}"
             android:layout_width="76dp"
             android:layout_height="32dp"
             android:layout_marginEnd="15dp"
@@ -162,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Dodaj cel"
+                android:text="Dodaj fundusze"
                 android:textColor="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -194,7 +193,7 @@
 
             <LinearLayout
                 android:id="@+id/fragment_card__filter_button"
-                touchListener="@{true}"
+                touchListener="@{false}"
                 android:layout_width="117dp"
                 android:layout_height="35dp"
                 android:layout_marginEnd="25dp"

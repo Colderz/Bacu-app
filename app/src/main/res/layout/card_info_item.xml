@@ -9,7 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/image_view"
@@ -18,34 +20,13 @@
             android:layout_marginHorizontal="10dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/card_bacu"
             tools:ignore="ContentDescription" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="25dp"
-            android:text="Nowy samochód"
-            android:textColor="@android:color/white"
-            android:textSize="19sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="15dp"
-            android:text="Do: 20/12/2021"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

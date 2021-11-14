@@ -30,7 +30,6 @@ class CardsFragment : Fragment() {
         R.drawable.card_bacu,
         R.drawable.card_bacu,
         R.drawable.card_bacu,
-        R.drawable.card_bacu
     )
 
     private val viewModel: CardsViewModel by viewModels()
@@ -47,15 +46,20 @@ class CardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureViewPager()
+        initObservers()
+    }
 
-        binding.fragmentCardAddButton.setOnClickListener {
-            findNavController().navigate(R.id.action_CardsFragment_to_AddNewGoalDialog)
-        }
+    private fun initObservers() {
+        viewModel.navigateToAddGoalDialog.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                findNavController().navigate(R.id.action_CardsFragment_to_AddNewGoalDialog)
+            }
+        })
     }
 
     private fun configureViewPager() {
         viewPager = binding.imageView
-        adapter = CardPagerAdapter(images)
+        adapter = CardPagerAdapter(images, viewModel)
         viewPager.adapter = adapter
         viewPager.clipToPadding = false
         viewPager.clipChildren = false

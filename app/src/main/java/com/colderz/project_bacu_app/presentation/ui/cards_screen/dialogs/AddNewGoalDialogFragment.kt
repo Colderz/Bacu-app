@@ -31,12 +31,12 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun initObservers() {
-        viewModel.navigateToNextStep.observe(this, {
+        viewModel.navigateToNextStep.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let { state ->
                 updateAddGoalState(state)
             }
         })
-        viewModel.choiceIntervalButton.observe(this, {
+        viewModel.choiceIntervalButton.observe(viewLifecycleOwner, {
             handleIntervalButtons(it)
         })
     }
