@@ -30,7 +30,7 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -49,7 +49,7 @@ class DashboardFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.getCurrencies()
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.currenciesFlow.collect { result ->
                 when (result) {
                     is Resource.Success -> {

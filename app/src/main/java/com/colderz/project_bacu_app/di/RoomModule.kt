@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.colderz.project_bacu_app.data.database.FinanceGoalDao
 import com.colderz.project_bacu_app.data.database.FinanceGoalDatabase
+import com.colderz.project_bacu_app.data.repository.DatabaseGoalRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,4 +33,8 @@ object RoomModule {
     fun provideFinanceGoalDAO(financeGoalDatabase: FinanceGoalDatabase): FinanceGoalDao {
         return financeGoalDatabase.financeGoalDao()
     }
+
+    @Singleton
+    @Provides
+    fun provideDatabaseGoalRepository(financeGoalDao: FinanceGoalDao): DatabaseGoalRepositoryImpl = DatabaseGoalRepositoryImpl(financeGoalDao)
 }

@@ -1,4 +1,4 @@
-package com.colderz.project_bacu_app.presentation.ui.dashboard_screen
+    package com.colderz.project_bacu_app.presentation.ui.dashboard_screen
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -35,7 +35,6 @@ class DashboardViewModel @Inject constructor(
             getCurrenciesUseCase(ACCESS_KEY).collect { _currenciesFlow.value = it }
         }
     }
-
 
     fun convert(rates: ArrayList<Double?>): ArrayList<Double?> {
         val pLNRate = rates[0]!!.toDouble()

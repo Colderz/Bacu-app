@@ -1,7 +1,6 @@
 package com.colderz.project_bacu_app.domain.use_case
 
 import com.colderz.project_bacu_app.common.Resource
-import com.colderz.project_bacu_app.data.database.FinanceGoalDao
 import com.colderz.project_bacu_app.data.remote.dto.toCurrencies
 import com.colderz.project_bacu_app.domain.model.Currencies
 import com.colderz.project_bacu_app.domain.repository.FinanceRepository
@@ -12,8 +11,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetCurrenciesUseCase @Inject constructor(
-    private val repository: FinanceRepository,
-    private val financeGoalDao: FinanceGoalDao
+    private val repository: FinanceRepository
 ) {
     operator fun invoke(accessKey: String): Flow<Resource<Currencies?>> = flow {
         try {

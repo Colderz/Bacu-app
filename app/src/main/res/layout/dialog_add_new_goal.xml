@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="uiState"
+            type="AddGoalState" />
+
+        <variable
+            name="viewModel"
+            type="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalViewModel" />
+
+        <variable
+            name="intervalChoice"
+            type="Integer" />
+
+        <import type="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalDialogFragment.AddGoalState" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_dialog">
+
+        <View
+            android:id="@+id/belt"
+            android:layout_width="40dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/gray_belt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="28dp"
+            android:layout_marginStart="25dp"
+            android:gravity="center"
+            android:text="Kategoria celu"
+            android:textColor="#2E5A59"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/belt" />
+
+        <FrameLayout
+            android:id="@+id/fragment_card__title_section"
+            android:layout_width="105dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/rounded_orange_button"
+            android:backgroundTint="@color/color_primary"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Transport"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <com.colderz.project_bacu_app.presentation.ui.custom_views.CustomProgressIndicator
+            android:id="@+id/custom_progress_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <LinearLayout
+            android:id="@+id/add_goal_dialog__amount_layout"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="@{uiState == AddGoalState.SET_AMOUNT ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_card__done"
+            app:layout_constraintTop_toBottomOf="@+id/custom_progress_indicator"
+            tools:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:gravity="center"
+                android:text="Jaką kwotę potrzebujesz?"
+                android:textColor="#2E5A59"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="3dp"
+                android:hint="Kwota"
+                android:paddingBottom="30dp"
+                app:boxStrokeColor="@color/color_orange_main"
+                app:hintTextColor="@color/color_orange_main"
+                app:startIconDrawable="@drawable/ic_cash_card"
+                app:startIconTint="@color/color_orange_main"
+                app:suffixText=" zł"
+                app:suffixTextColor="@color/color_orange_main">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_goal_dialog__input_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="@color/color_orange_main"
+                    android:textCursorDrawable="@drawable/color_cursor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/add_goal_dialog__interval_layout"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="@{uiState == AddGoalState.SET_INTERVAL ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_card__done"
+            app:layout_constraintTop_toBottomOf="@+id/custom_progress_indicator"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:gravity="center"
+                android:text="Co jaki czas chcesz odkładać na swój cel?"
+                android:textColor="#2E5A59"
+                android:textSize="18sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="15dp">
+
+                <FrameLayout
+                    android:id="@+id/dialog_add_goal_button_day"
+                    touchListener="@{true}"
+                    android:layout_width="105dp"
+                    android:layout_height="38dp"
+                    android:layout_marginVertical="25dp"
+                    android:background="@drawable/rounded_orange_button"
+                    android:backgroundTint="@{intervalChoice == 1 ? @color/color_orange_main : @android:color/white}"
+                    android:clickable="true"
+                    android:elevation="7dp"
+                    android:focusable="true"
+                    android:onClick="@{() -> viewModel.setIntervalButton(1)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/dialog_add_goal_button_week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Codziennie"
+                        android:textColor="@{intervalChoice == 1 ? @android:color/white : @color/main_color_text}"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/dialog_add_goal_button_week"
+                    touchListener="@{true}"
+                    android:layout_width="105dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/rounded_orange_button"
+                    android:backgroundTint="@{intervalChoice == 2 ? @color/color_orange_main : @android:color/white}"
+                    android:clickable="true"
+                    android:elevation="7dp"
+                    android:focusable="true"
+                    android:onClick="@{() -> viewModel.setIntervalButton(2)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Co tydzień"
+                        android:textColor="@{intervalChoice == 2 ? @android:color/white : @color/main_color_text}"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/dialog_add_goal_button_month"
+                    touchListener="@{true}"
+                    android:layout_width="105dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/rounded_orange_button"
+                    android:backgroundTint="@{intervalChoice == 3 ? @color/color_orange_main : @android:color/white}"
+                    android:clickable="true"
+                    android:elevation="7dp"
+                    android:focusable="true"
+                    android:onClick="@{() -> viewModel.setIntervalButton(3)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dialog_add_goal_button_week"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Co miesiąc"
+                        android:textColor="@{intervalChoice == 3 ? @android:color/white : @color/main_color_text}"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fragment_card__done"
+            touchListener="@{true}"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/rounded_orange_button"
+            android:backgroundTint="@color/color_primary"
+            android:clickable="true"
+            android:elevation="9dp"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.nextStep(AddGoalState.SET_INTERVAL)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Dalej"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

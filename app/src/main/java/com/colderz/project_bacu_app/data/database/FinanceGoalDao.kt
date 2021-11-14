@@ -8,7 +8,7 @@ import com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity
 interface FinanceGoalDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(financeGoalEntity: FinanceGoalEntity): Long
+    suspend fun upsert(financeGoalEntity: FinanceGoalEntity)
 
     @Query("SELECT * FROM goals")
     fun getAllGoals(): LiveData<List<FinanceGoalEntity>>

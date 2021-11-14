@@ -12,4 +12,5 @@
     <color name="card_background_color">#FBFDFF</color>
     <color name="card_category_info_color">#AFD7D7</color>
     <color name="icon_tint">#95AEB0</color>
+    <color name="main_color_text">#2E5A59</color>
 </resources>

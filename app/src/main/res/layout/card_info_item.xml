@@ -17,12 +17,12 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="TODO"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/card_bacu" />
+            tools:src="@drawable/card_bacu"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,11 +39,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="15dp"
             android:text="Do: 20/12/2021"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginEnd="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view"
             app:layout_constraintEnd_toEndOf="parent" />
 
