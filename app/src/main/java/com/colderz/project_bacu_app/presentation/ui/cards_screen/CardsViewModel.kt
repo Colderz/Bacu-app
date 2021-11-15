@@ -15,8 +15,24 @@ class CardsViewModel @Inject constructor(
     val navigateToAddGoalDialog: LiveData<Event<Boolean>>
         get() = _navigateToAddGoalDialog
 
+    private val _changeToNextCategory = MutableLiveData<Event<Boolean>>()
+    val changeToNextCategory: LiveData<Event<Boolean>>
+        get() = _changeToNextCategory
+
+    private val __changeToPreviousCategory = MutableLiveData<Event<Boolean>>()
+    val changeToPreviousCategory: LiveData<Event<Boolean>>
+        get() = __changeToPreviousCategory
+
     fun goToAddGoalDialog() {
         _navigateToAddGoalDialog.value = Event(true)
+    }
+
+    fun nextCategory() {
+        _changeToNextCategory.value = Event(true)
+    }
+
+    fun previousCategory() {
+        __changeToPreviousCategory.value = Event(true)
     }
 
 }

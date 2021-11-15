@@ -5,6 +5,19 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.colderz.project_bacu_app.presentation.ui.cards_screen.CardsViewModel" />
+
+        <variable
+            name="goalsCategoryState"
+            type="CardsFragmentState" />
+
+        <variable
+            name="categoryTitle"
+            type="String" />
+
+        <import type="com.colderz.project_bacu_app.presentation.ui.cards_screen.CardsFragment.CardsFragmentState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Karty celów"
+            android:text="@string/goal_cards"
             android:textColor="#2E5A59"
             android:textSize="26sp"
             android:textStyle="bold"
@@ -82,10 +95,11 @@
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <TextView
+                android:id="@+id/category_goals_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Transport"
+                android:text="@{categoryTitle}"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -99,7 +113,10 @@
             android:layout_height="32dp"
             android:layout_marginStart="15dp"
             android:background="@drawable/rounded_bar_background"
+            android:clickable="true"
             android:elevation="2dp"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.previousCategory()}"
             android:translationZ="3dp"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_card__title_section"
             app:layout_constraintEnd_toStartOf="@+id/fragment_card__title_section"
@@ -121,7 +138,10 @@
             android:layout_height="32dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/rounded_bar_background"
+            android:clickable="true"
             android:elevation="2dp"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.nextCategory()}"
             android:translationZ="3dp"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_card__title_section"
             app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Dodaj fundusze"
+                android:text="@string/add_money"
                 android:textColor="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -184,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="25dp"
-                android:text="Historia"
+                android:text="@string/history"
                 android:textColor="#2E5A59"
                 android:textSize="23sp"
                 android:textStyle="bold"
@@ -209,7 +229,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:gravity="center_vertical"
-                    android:text="Sortuj wg: "
+                    android:text="@string/order_by"
                     android:textColor="@android:color/white"
                     android:textSize="12sp" />
 
@@ -218,7 +238,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="1dp"
                     android:gravity="center_vertical"
-                    android:text="Daty"
+                    android:text="@string/order_date"
                     android:textColor="@android:color/white"
                     android:textSize="13sp"
                     android:textStyle="bold" />

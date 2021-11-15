@@ -17,7 +17,7 @@ class CustomProgressIndicator @JvmOverloads constructor(
     private val DEFAULT_AMOUNT_OF_CIRCLES = 5
 
     init {
-        updateProgressView(1)
+        updateProgressView(0)
     }
 
     private fun drawCircles() {
@@ -29,7 +29,7 @@ class CustomProgressIndicator @JvmOverloads constructor(
 
     fun updateProgressView(step: Int) {
         drawCircles()
-        binding.circleContainer.removeViewAt(step - 1)
-        binding.circleContainer.addView(CustomFillDot(context), step - 1)
+        binding.circleContainer.removeViewAt(step )
+        binding.circleContainer.addView(CustomFillDot(context), step)
     }
 }

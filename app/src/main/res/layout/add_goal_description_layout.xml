@@ -48,7 +48,7 @@
             app:startIconTint="@color/color_orange_main">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/add_goal_dialog__input_amount"
+                android:id="@+id/add_goal_dialog__input_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"

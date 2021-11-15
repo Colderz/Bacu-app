@@ -25,6 +25,8 @@ class CardsFragment : Fragment() {
     private var _binding: FragmentCardsBinding? = null
     private val binding get() = _binding!!
 
+    var actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
+
     private var images: MutableList<Int> = mutableListOf(
         R.drawable.card_bacu,
         R.drawable.card_bacu,
@@ -45,14 +47,40 @@ class CardsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        configureViewPager()
+        initBinding()
+        configureView()
         initObservers()
+    }
+
+    private fun configureView() {
+        configureViewPager()
+
+    }
+
+    private fun initBinding() {
+        binding.apply {
+            viewModel = this@CardsFragment.viewModel
+            goalsCategoryState = actualCardsFragmentState
+            categoryTitle = getString(R.string.title_transport)
+        }
     }
 
     private fun initObservers() {
         viewModel.navigateToAddGoalDialog.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let {
-                findNavController().navigate(R.id.action_CardsFragment_to_AddNewGoalDialog)
+                val title: String = binding.categoryGoalsTitle.text.toString()
+                val action = CardsFragmentDirections.actionCardsFragmentToAddNewGoalDialog(title)
+                findNavController().navigate(action)
+            }
+        })
+        viewModel.changeToNextCategory.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                nextGoalsCategory()
+            }
+        })
+        viewModel.changeToPreviousCategory.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                previousGoalsCategory()
             }
         })
     }
@@ -73,6 +101,68 @@ class CardsFragment : Fragment() {
             page.scaleY = 0.8f + v * 0.2f
         }
         viewPager.setPageTransformer(transformer)
+    }
+
+    fun nextGoalsCategory() {
+        when(actualCardsFragmentState) {
+            CardsFragmentState.TRANSPORT_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.HOME_PAGE
+                binding.categoryTitle = getString(R.string.title_home)
+            }
+            CardsFragmentState.HOME_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.TRAVEL_PAGE
+                binding.categoryTitle = getString(R.string.title_travel)
+            }
+            CardsFragmentState.TRAVEL_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.ELECTRONIC_PAGE
+                binding.categoryTitle = getString(R.string.title_electronic)
+            }
+            CardsFragmentState.ELECTRONIC_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
+                binding.categoryTitle = getString(R.string.title_gifts)
+            }
+            CardsFragmentState.GIFTS_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
+                binding.categoryTitle = getString(R.string.title_transport)
+            }
+        }
+        binding.goalsCategoryState = actualCardsFragmentState
+    }
+
+    fun previousGoalsCategory() {
+        when(actualCardsFragmentState) {
+            CardsFragmentState.TRANSPORT_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
+                binding.categoryTitle = getString(R.string.title_gifts)
+            }
+            CardsFragmentState.HOME_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
+                binding.categoryTitle = getString(R.string.title_transport)
+            }
+            CardsFragmentState.TRAVEL_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.HOME_PAGE
+                binding.categoryTitle = getString(R.string.title_home)
+            }
+            CardsFragmentState.ELECTRONIC_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.TRAVEL_PAGE
+                binding.categoryTitle = getString(R.string.title_travel)
+            }
+            CardsFragmentState.GIFTS_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.ELECTRONIC_PAGE
+                binding.categoryTitle = getString(R.string.title_electronic)
+            }
+        }
+        binding.apply {
+            goalsCategoryState = actualCardsFragmentState
+        }
+    }
+
+    enum class CardsFragmentState {
+        TRANSPORT_PAGE,
+        HOME_PAGE,
+        TRAVEL_PAGE,
+        ELECTRONIC_PAGE,
+        GIFTS_PAGE
     }
 
     override fun onDestroyView() {

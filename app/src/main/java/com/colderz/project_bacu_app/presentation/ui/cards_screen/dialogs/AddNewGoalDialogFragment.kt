@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.colderz.project_bacu_app.R
 import com.colderz.project_bacu_app.databinding.DialogAddNewGoalBinding
 import com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.date_picker.DatePickerFragment
@@ -21,6 +22,7 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
     private val requestKey = "REQUEST_KEY"
     private val selectedDate = "SELECTED_DATE"
     private val datePickerTag = "DatePickerFragment"
+    private val args: AddNewGoalDialogFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +34,11 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
         initObservers()
         updateAddGoalState(AddGoalState.SET_AMOUNT)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.category = args.categoryName
     }
 
     private fun initObservers() {
@@ -61,6 +68,7 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
             if (resultKey == requestKey) {
                 val date = bundle.getString(selectedDate)
                 binding.addGoalLayoutDate.dialogAddGoalOpenCalendar.text = date
+                viewModel.goalDate = date.toString()
             }
         }
         //show
@@ -68,7 +76,10 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun initBinding() {
-        binding.viewModel = viewModel
+        binding.apply {
+            newGoalViewModel = viewModel
+            categoryName = args.categoryName
+        }
         handleIntervalButtons(1)
     }
 
@@ -77,34 +88,47 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
         SET_INTERVAL,
         SET_DATE,
         SET_NAME,
-        SET_DESCRIPTION
+        SET_DESCRIPTION,
+        SET_GOAL
     }
 
     private fun updateAddGoalState(state: AddGoalState) {
         binding.apply {
-            uiState = state
             when (state) {
                 AddGoalState.SET_AMOUNT -> {
-                    customProgressIndicator.updateProgressView(1)
+                    customProgressIndicator.updateProgressView(0)
                 }
                 AddGoalState.SET_INTERVAL -> {
-                    customProgressIndicator.updateProgressView(2)
+                    viewModel.goalAmount =
+                        addGoalLayoutAmount.addGoalDialogInputAmount.text.toString()
+                    customProgressIndicator.updateProgressView(1)
                 }
                 AddGoalState.SET_DATE -> {
-                    customProgressIndicator.updateProgressView(3)
+                    customProgressIndicator.updateProgressView(2)
                 }
                 AddGoalState.SET_NAME -> {
-                    customProgressIndicator.updateProgressView(4)
+                    customProgressIndicator.updateProgressView(3)
                 }
                 AddGoalState.SET_DESCRIPTION -> {
-                    customProgressIndicator.updateProgressView(5)
+                    viewModel.goalName =
+                        addGoalLayoutName.addGoalDialogInputName.text.toString()
+                    customProgressIndicator.updateProgressView(4)
+                }
+                AddGoalState.SET_GOAL -> {
+                    viewModel.apply {
+                        goalDescription = addGoalLayoutDescription.addGoalDialogInputDescription.text.toString()
+                        saveGoal()
+                    }
+                    this@AddNewGoalDialogFragment.dismiss()
                 }
             }
+            uiState = state
         }
     }
 
     private fun handleIntervalButtons(choice: Int) {
         binding.intervalChoice = choice
+        viewModel.intervalChoice = choice.toString()
     }
 
     override fun getTheme(): Int {

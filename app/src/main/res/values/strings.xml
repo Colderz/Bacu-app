@@ -60,4 +60,16 @@
     <string name="what_amount">Jaką kwotę potrzebujesz?</string>
     <string name="amount">Kwota</string>
 
+    <!--  CardsFragment  -->
+    <string name="title_transport">Transport</string>
+    <string name="title_home">Dom</string>
+    <string name="title_travel">Podróże</string>
+    <string name="title_electronic">Elektronika</string>
+    <string name="title_gifts">Podróże</string>
+    <string name="goal_cards">Karty celów</string>
+    <string name="add_money">Dodaj fundusze</string>
+    <string name="history">Historia</string>
+    <string name="order_by">Sortuj wg:</string>
+    <string name="order_date">Daty</string>
+
 </resources>

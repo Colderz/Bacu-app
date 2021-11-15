@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.colderz.project_bacu_app.data.database.FinanceGoalDao
 import com.colderz.project_bacu_app.data.database.FinanceGoalDatabase
 import com.colderz.project_bacu_app.data.repository.DatabaseGoalRepositoryImpl
+import com.colderz.project_bacu_app.domain.repository.DatabaseGoalRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,5 +37,5 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun provideDatabaseGoalRepository(financeGoalDao: FinanceGoalDao): DatabaseGoalRepositoryImpl = DatabaseGoalRepositoryImpl(financeGoalDao)
+    fun provideDatabaseGoalRepository(financeGoalDao: FinanceGoalDao): DatabaseGoalRepository = DatabaseGoalRepositoryImpl(financeGoalDao)
 }

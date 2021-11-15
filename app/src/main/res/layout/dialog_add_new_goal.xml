@@ -10,12 +10,16 @@
             type="AddGoalState" />
 
         <variable
-            name="viewModel"
+            name="newGoalViewModel"
             type="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalViewModel" />
 
         <variable
             name="intervalChoice"
             type="Integer" />
+
+        <variable
+            name="categoryName"
+            type="String" />
 
         <import type="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalDialogFragment.AddGoalState" />
 
@@ -68,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Transport"
+                android:text="@{categoryName}"
                 android:textColor="@android:color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -86,30 +90,34 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <include
+            android:id="@+id/add_goal_layout_amount"
             layout="@layout/add_goal_amount_layout"
             app:uiState="@{uiState}"
+            app:viewModel="@{newGoalViewModel}"
             tools:visibility="gone" />
 
         <include
             layout="@layout/add_goal_interval_layout"
             app:intervalChoice="@{intervalChoice}"
             app:uiState="@{uiState}"
-            app:viewModel="@{viewModel}"
+            app:viewModel="@{newGoalViewModel}"
             tools:visibility="gone" />
 
         <include
             android:id="@+id/add_goal_layout_date"
             layout="@layout/add_goal_date_layout"
             app:uiState="@{uiState}"
-            app:viewModel="@{viewModel}"
+            app:viewModel="@{newGoalViewModel}"
             tools:visibility="gone" />
 
         <include
+            android:id="@+id/add_goal_layout_name"
             layout="@layout/add_goal_name_layout"
             app:uiState="@{uiState}"
             tools:visibility="gone" />
 
         <include
+            android:id="@+id/add_goal_layout_description"
             layout="@layout/add_goal_description_layout"
             app:uiState="@{uiState}" />
 
@@ -125,7 +133,7 @@
             android:clickable="true"
             android:elevation="9dp"
             android:focusable="true"
-            android:onClick="@{() -> viewModel.nextStep(uiState)}"
+            android:onClick="@{() -> newGoalViewModel.nextStep(uiState)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

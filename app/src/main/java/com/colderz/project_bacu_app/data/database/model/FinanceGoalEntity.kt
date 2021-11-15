@@ -7,8 +7,6 @@ import androidx.room.PrimaryKey
     tableName = "goals"
 )
 data class FinanceGoalEntity(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
     val type: String,
     val category: String,
     val amountGoal: String,
@@ -16,5 +14,6 @@ data class FinanceGoalEntity(
     val interval: String,
     val deadline: String,
     val description: String,
+    @PrimaryKey
     val name: String
 )
