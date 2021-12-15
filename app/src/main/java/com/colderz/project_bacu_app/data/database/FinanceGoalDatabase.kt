@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity
 
-@Database(entities = [FinanceGoalEntity::class], version = 1)
+@Database(entities = [FinanceGoalEntity::class], version = 2)
 abstract class FinanceGoalDatabase : RoomDatabase() {
     abstract fun financeGoalDao(): FinanceGoalDao
 

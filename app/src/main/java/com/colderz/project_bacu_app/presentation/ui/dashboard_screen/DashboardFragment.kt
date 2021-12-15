@@ -44,10 +44,15 @@ class DashboardFragment : Fragment() {
     private fun initView() {
         linearLayoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = linearLayoutManager
-        setupObservers()
+        setupApiObserver()
+        initLiveDataObserver()
     }
 
-    private fun setupObservers() {
+    private fun initLiveDataObserver() {
+
+    }
+
+    private fun setupApiObserver() {
         viewModel.getCurrencies()
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.currenciesFlow.collect { result ->

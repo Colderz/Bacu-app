@@ -13,7 +13,7 @@ data class FinanceGoalEntity(
     val balance: String,
     val interval: String,
     val deadline: String,
-    val description: String,
+    val intervalAmount: String,
     @PrimaryKey
     val name: String
 )

@@ -27,13 +27,6 @@ class CardsFragment : Fragment() {
 
     var actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
 
-    private var images: MutableList<Int> = mutableListOf(
-        R.drawable.card_bacu,
-        R.drawable.card_bacu,
-        R.drawable.card_bacu,
-        R.drawable.card_bacu,
-    )
-
     private val viewModel: CardsViewModel by viewModels()
 
     override fun onCreateView(
@@ -48,13 +41,7 @@ class CardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBinding()
-        configureView()
         initObservers()
-    }
-
-    private fun configureView() {
-        configureViewPager()
-
     }
 
     private fun initBinding() {
@@ -69,7 +56,7 @@ class CardsFragment : Fragment() {
         viewModel.navigateToAddGoalDialog.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let {
                 val title: String = binding.categoryGoalsTitle.text.toString()
-                val action = CardsFragmentDirections.actionCardsFragmentToAddNewGoalDialog(title)
+                val action = CardsFragmentDirections.actionCardsfragmentToAddnewgoaldialog(title)
                 findNavController().navigate(action)
             }
         })
@@ -83,11 +70,20 @@ class CardsFragment : Fragment() {
                 previousGoalsCategory()
             }
         })
+        viewModel.allGoalFromDatabase.observe(viewLifecycleOwner, {
+            configureViewPager(binding.categoryTitle!!)
+        })
+        viewModel.navigateToHintDialog.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                findNavController().navigate(R.id.action_cardsfragment_to_cardshintdialog)
+            }
+        })
     }
 
-    private fun configureViewPager() {
-        viewPager = binding.imageView
-        adapter = CardPagerAdapter(images, viewModel)
+    private fun configureViewPager(category: String) {
+        viewPager = binding.imagesView
+        val prepareCategoryList = viewModel.prepareCorrectViewPagerData(category)
+        adapter = CardPagerAdapter(prepareCategoryList, viewModel)
         viewPager.adapter = adapter
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
@@ -101,55 +97,74 @@ class CardsFragment : Fragment() {
             page.scaleY = 0.8f + v * 0.2f
         }
         viewPager.setPageTransformer(transformer)
+        binding.apply {
+            if (prepareCategoryList?.isEmpty()!!) {
+                fragmentCardNoneGoal.visibility = View.VISIBLE
+                imagesView.visibility = View.INVISIBLE
+            } else {
+                fragmentCardNoneGoal.visibility = View.INVISIBLE
+                imagesView.visibility = View.VISIBLE
+            }
+        }
     }
 
     fun nextGoalsCategory() {
-        when(actualCardsFragmentState) {
+        when (actualCardsFragmentState) {
             CardsFragmentState.TRANSPORT_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.HOME_PAGE
                 binding.categoryTitle = getString(R.string.title_home)
+                configureViewPager(getString(R.string.title_home))
             }
             CardsFragmentState.HOME_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRAVEL_PAGE
                 binding.categoryTitle = getString(R.string.title_travel)
+                configureViewPager(getString(R.string.title_travel))
             }
             CardsFragmentState.TRAVEL_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.ELECTRONIC_PAGE
                 binding.categoryTitle = getString(R.string.title_electronic)
+                configureViewPager(getString(R.string.title_electronic))
             }
             CardsFragmentState.ELECTRONIC_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
                 binding.categoryTitle = getString(R.string.title_gifts)
+                configureViewPager(getString(R.string.title_gifts))
             }
             CardsFragmentState.GIFTS_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
                 binding.categoryTitle = getString(R.string.title_transport)
+                configureViewPager(getString(R.string.title_transport))
             }
         }
         binding.goalsCategoryState = actualCardsFragmentState
     }
 
     fun previousGoalsCategory() {
-        when(actualCardsFragmentState) {
+        when (actualCardsFragmentState) {
             CardsFragmentState.TRANSPORT_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
                 binding.categoryTitle = getString(R.string.title_gifts)
+                configureViewPager(getString(R.string.title_gifts))
             }
             CardsFragmentState.HOME_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
                 binding.categoryTitle = getString(R.string.title_transport)
+                configureViewPager(getString(R.string.title_transport))
             }
             CardsFragmentState.TRAVEL_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.HOME_PAGE
                 binding.categoryTitle = getString(R.string.title_home)
+                configureViewPager(getString(R.string.title_home))
             }
             CardsFragmentState.ELECTRONIC_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRAVEL_PAGE
                 binding.categoryTitle = getString(R.string.title_travel)
+                configureViewPager(getString(R.string.title_travel))
             }
             CardsFragmentState.GIFTS_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.ELECTRONIC_PAGE
                 binding.categoryTitle = getString(R.string.title_electronic)
+                configureViewPager(getString(R.string.title_electronic))
             }
         }
         binding.apply {

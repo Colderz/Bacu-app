@@ -5,6 +5,11 @@
 
     <data>
 
+        <variable
+            name="goal"
+            type="com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,14 +24,91 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
             android:clickable="true"
             android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/card_bacu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/card_bacu"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/card_bacu" />
+
+        <TextView
+            android:id="@+id/card_info__title_name_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="44dp"
+            android:text="Nazwa celu"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view"
+            app:layout_constraintStart_toStartOf="@+id/image_view" />
+
+        <TextView
+            android:id="@+id/card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{goal.name}"
+            android:textColor="@android:color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/card_info__title_name_desc"
+            app:layout_constraintTop_toBottomOf="@+id/card_info__title_name_desc"
+            tools:text="Nowy samochód" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{goal.deadline}"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@+id/card_info__balance_goal"
+            app:layout_constraintTop_toTopOf="@+id/image_view"
+            tools:text="19-03-2022"/>
+
+        <TextView
+            android:id="@+id/card_info__balance_goal"
+            balance="@{goal.balance}"
+            goal="@{goal.amountGoal}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:textColor="@android:color/white"
+            android:textSize="33sp"
+            app:layout_constraintBottom_toTopOf="@+id/card_info__title_name_desc"
+            app:layout_constraintStart_toStartOf="@+id/card_info__title_name_desc"
+            app:layout_constraintTop_toTopOf="@+id/image_view"
+            tools:text="19200/25000 zł" />
+
+        <TextView
+            android:id="@+id/card_info__title_interval_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="46dp"
+            interval="@{goal.interval}"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view"
+            app:layout_constraintEnd_toEndOf="@+id/image_view" />
+
+        <TextView
+            android:id="@+id/card_info__amount_interval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            intervalAmount="@{goal.intervalAmount}"
+            android:textColor="@android:color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/card_info__title_interval_desc"
+            app:layout_constraintTop_toBottomOf="@+id/card_info__title_name_desc"
+            tools:text="50 zł" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

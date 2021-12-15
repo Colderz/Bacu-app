@@ -117,8 +117,8 @@
             tools:visibility="gone" />
 
         <include
-            android:id="@+id/add_goal_layout_description"
-            layout="@layout/add_goal_description_layout"
+            android:id="@+id/add_goal_layout_amount_interval"
+            layout="@layout/add_goal_interval_amount_layout"
             app:uiState="@{uiState}" />
 
         <FrameLayout
@@ -142,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@{uiState == AddGoalState.SET_DESCRIPTION ? @string/done : @string/next}"
+                android:text="@{uiState == AddGoalState.SET_AMOUNT_INTERVAL ? @string/done : @string/next}"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"

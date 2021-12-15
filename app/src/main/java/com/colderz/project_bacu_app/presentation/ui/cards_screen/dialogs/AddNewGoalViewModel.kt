@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.colderz.project_bacu_app.common.Constants
 import com.colderz.project_bacu_app.common.Event
 import com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity
 import com.colderz.project_bacu_app.domain.use_case.AddNewGoalUseCase
-import com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalDialogFragment.*
+import com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.AddNewGoalDialogFragment.AddGoalState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,11 +35,11 @@ class AddNewGoalViewModel @Inject constructor(
     var balance: String = "0"
     var intervalChoice: String = ""
     var goalDate: String = ""
-    var goalDescription: String = ""
+    var goalIntervalAmount: String = ""
     var goalName: String = ""
 
     fun nextStep(state: AddGoalState) {
-        when(state) {
+        when (state) {
             AddGoalState.SET_AMOUNT -> {
                 _navigateToNextStep.value = Event(AddGoalState.SET_INTERVAL)
             }
@@ -52,9 +50,9 @@ class AddNewGoalViewModel @Inject constructor(
                 _navigateToNextStep.value = Event(AddGoalState.SET_NAME)
             }
             AddGoalState.SET_NAME -> {
-                _navigateToNextStep.value = Event(AddGoalState.SET_DESCRIPTION)
+                _navigateToNextStep.value = Event(AddGoalState.SET_AMOUNT_INTERVAL)
             }
-            AddGoalState.SET_DESCRIPTION -> {
+            AddGoalState.SET_AMOUNT_INTERVAL -> {
                 _navigateToNextStep.value = Event(AddGoalState.SET_GOAL)
             }
         }
@@ -62,7 +60,18 @@ class AddNewGoalViewModel @Inject constructor(
 
     fun saveGoal() {
         viewModelScope.launch(Dispatchers.IO) {
-            addNewGoalUseCase(FinanceGoalEntity(type, category, goalAmount, balance, intervalChoice, goalDate, goalDescription, goalName))
+            addNewGoalUseCase(
+                FinanceGoalEntity(
+                    type,
+                    category,
+                    goalAmount,
+                    balance,
+                    intervalChoice,
+                    goalDate,
+                    goalIntervalAmount,
+                    goalName
+                )
+            )
         }
     }
 

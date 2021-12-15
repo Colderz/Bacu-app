@@ -20,7 +20,7 @@
         android:layout_height="120dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        android:visibility="@{uiState == AddGoalState.SET_DESCRIPTION ? View.VISIBLE : View.INVISIBLE}"
+        android:visibility="@{uiState == AddGoalState.SET_AMOUNT_INTERVAL ? View.VISIBLE : View.INVISIBLE}"
         app:layout_constraintBottom_toTopOf="@+id/fragment_card__done"
         app:layout_constraintTop_toBottomOf="@+id/custom_progress_indicator">
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:gravity="center"
-            android:text="@string/set_short_description"
+            android:text="@string/set_interval_amount"
             android:textColor="#2E5A59"
             android:textSize="18sp" />
 
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="3dp"
-            android:hint="@string/description"
+            android:hint="@string/interval_amount"
             android:paddingBottom="30dp"
             app:boxStrokeColor="@color/color_orange_main"
             app:hintTextColor="@color/color_orange_main"
@@ -48,10 +48,11 @@
             app:startIconTint="@color/color_orange_main">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/add_goal_dialog__input_description"
+                android:id="@+id/add_goal_dialog__input_amount_interval"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="number"
+                android:maxLength="4"
                 android:textColor="@color/color_orange_main"
                 android:textCursorDrawable="@drawable/color_cursor" />
 

@@ -88,7 +88,7 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
         SET_INTERVAL,
         SET_DATE,
         SET_NAME,
-        SET_DESCRIPTION,
+        SET_AMOUNT_INTERVAL,
         SET_GOAL
     }
 
@@ -109,14 +109,14 @@ class AddNewGoalDialogFragment : BottomSheetDialogFragment() {
                 AddGoalState.SET_NAME -> {
                     customProgressIndicator.updateProgressView(3)
                 }
-                AddGoalState.SET_DESCRIPTION -> {
+                AddGoalState.SET_AMOUNT_INTERVAL -> {
                     viewModel.goalName =
                         addGoalLayoutName.addGoalDialogInputName.text.toString()
                     customProgressIndicator.updateProgressView(4)
                 }
                 AddGoalState.SET_GOAL -> {
                     viewModel.apply {
-                        goalDescription = addGoalLayoutDescription.addGoalDialogInputDescription.text.toString()
+                        goalIntervalAmount = addGoalLayoutAmountInterval.addGoalDialogInputAmountInterval.text.toString()
                         saveGoal()
                     }
                     this@AddNewGoalDialogFragment.dismiss()

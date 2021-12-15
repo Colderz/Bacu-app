@@ -2,12 +2,10 @@ package com.colderz.project_bacu_app.common.binding_adapters
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
 import android.view.MotionEvent
 import android.view.View
 import androidx.databinding.BindingAdapter
 
-@SuppressLint("ClickableViewAccessibility")
 @BindingAdapter("touchListener")
 fun View.setTouchListener(value: Boolean) {
     this.setOnTouchListener { v, event ->
