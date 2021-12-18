@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.colderz.project_bacu_app.presentation.ui.cards_screen.CardsViewModel" />
+
+        <variable
             name="goal"
             type="com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity" />
 
@@ -29,6 +33,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/card_bacu"
             app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{() -> viewModel.openEditGoalDialog(goal)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
@@ -38,7 +43,7 @@
             android:id="@+id/card_info__title_name_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:layout_marginBottom="44dp"
             android:text="Nazwa celu"
             android:textColor="@android:color/white"
@@ -89,11 +94,12 @@
             android:id="@+id/card_info__title_interval_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginBottom="46dp"
             interval="@{goal.interval}"
             android:textColor="@android:color/white"
             android:textSize="12sp"
+            tools:text="@string/every_month"
             app:layout_constraintBottom_toBottomOf="@+id/image_view"
             app:layout_constraintEnd_toEndOf="@+id/image_view" />
 

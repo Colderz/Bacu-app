@@ -34,6 +34,10 @@ class CardsViewModel @Inject constructor(
     val navigateToHintDialog: LiveData<Event<Boolean>>
         get() = _navigateToHintDialog
 
+    private val _navigateToEditGoalDialog = MutableLiveData<Event<FinanceGoalEntity>>()
+    val navigateToEditGoalDialog: LiveData<Event<FinanceGoalEntity>>
+        get() = _navigateToEditGoalDialog
+
     fun goToAddGoalDialog() {
         _navigateToAddGoalDialog.value = Event(true)
     }
@@ -50,9 +54,13 @@ class CardsViewModel @Inject constructor(
         _navigateToHintDialog.value = Event(true)
     }
 
+    fun openEditGoalDialog(goal: FinanceGoalEntity) {
+        _navigateToEditGoalDialog.value = Event(goal)
+    }
+
     fun prepareCorrectViewPagerData(
         goalCategory: String,
     ): List<FinanceGoalEntity>? {
-        return _allGoalsFromDatabase.value?.filter { it.category == goalCategory }
+        return _allGoalsFromDatabase.value?.filter { it.category == goalCategory && it.type == "actual" }
     }
 }

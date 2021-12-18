@@ -122,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/evert_month"
+                    android:text="@string/every_month"
                     android:textColor="@{intervalChoice == 3 ? @android:color/white : @color/main_color_text}"
                     android:textSize="14sp"
                     android:textStyle="bold" />

@@ -54,12 +54,12 @@
     <string name="set_goal_interval">Co jaki czas chcesz odkładać na swój cel?</string>
     <string name="every_day">Codziennie</string>
     <string name="every_week">Co tydzień</string>
-    <string name="evert_month">Co miesiąc</string>
+    <string name="every_month">Co miesiąc</string>
     <string name="interval_amount">Wpłata</string>
     <string name="set_interval_amount">Jaką kwotę chcesz wpłacać?</string>
     <string name="what_amount">Jaką kwotę potrzebujesz?</string>
     <string name="amount">Kwota</string>
-    <string name="pln">zł</string>
+    <string name="pln">PLN</string>
 
     <!--  CardsFragment  -->
     <string name="title_transport">Transport</string>
@@ -72,11 +72,19 @@
     <string name="history">Historia</string>
     <string name="order_by">Sortuj wg:</string>
     <string name="order_date">Daty</string>
+    <string name="dialog_hint_desc">Znajdziesz tutaj cele, które możesz dodać klikając przycisk \'Dodaj nowy cel\'. Zdefiniowane cele możesz śledzić w pięciu podstawowych kategoriach. Ustalenie kwoty regularnej wpłaty pozwoli na wyświetlenie statystyk w panelu głównym aplikacji.</string>
 
     <string name="empty" />
+
+    <!-- Goal card -->
     <string name="card_info_interval_day">Codziennie po</string>
     <string name="card_info_interval_week">Co tydzień po</string>
     <string name="card_info_interval_month">Co miesiąc po</string>
-    <string name="dialog_hint_desc">Znajdziesz tutaj cele, które możesz zdefiniować klikając przycisk \'Dodaj nowy cel\'. Zdefiniowane cele możesz śledzić w pięciu zdefiniowanych kategoriach</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+
+    <!-- Edit goal dialog -->
+    <string name="dialog_edit_goal__title">Edytujesz cel</string>
 
 </resources>

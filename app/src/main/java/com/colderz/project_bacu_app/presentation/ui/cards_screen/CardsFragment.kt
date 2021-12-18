@@ -78,6 +78,12 @@ class CardsFragment : Fragment() {
                 findNavController().navigate(R.id.action_cardsfragment_to_cardshintdialog)
             }
         })
+        viewModel.navigateToEditGoalDialog.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { goal ->
+                val action = CardsFragmentDirections.actionCardsfragmentToEditgoaldialog(goal)
+                findNavController().navigate(action)
+        }
+        })
     }
 
     private fun configureViewPager(category: String) {

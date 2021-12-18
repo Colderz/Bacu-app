@@ -30,7 +30,10 @@ class CardPagerAdapter(
     inner class ViewHolder(val binding: CardInfoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: FinanceGoalEntity?) {
-            binding.goal = item
+            binding.apply {
+                goal = item
+                viewModel = this@CardPagerAdapter.viewModel
+            }
         }
 
     }

@@ -1,8 +1,11 @@
 package com.colderz.project_bacu_app.data.database.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(
     tableName = "goals"
 )
@@ -16,4 +19,4 @@ data class FinanceGoalEntity(
     val intervalAmount: String,
     @PrimaryKey
     val name: String
-)
+) : Parcelable

@@ -45,7 +45,9 @@
             app:boxStrokeColor="@color/color_orange_main"
             app:hintTextColor="@color/color_orange_main"
             app:startIconDrawable="@drawable/ic_description"
-            app:startIconTint="@color/color_orange_main">
+            app:startIconTint="@color/color_orange_main"
+            app:suffixText="@string/pln"
+            app:suffixTextColor="@color/color_orange_main">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_goal_dialog__input_amount_interval"

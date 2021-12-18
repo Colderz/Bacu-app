@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_cardsfragment_to_cardshintdialog"
             app:destination="@+id/hintCardsDialogFragment" />
+        <action
+            android:id="@+id/action_cardsfragment_to_editgoaldialog"
+            app:destination="@+id/editGoalDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -42,4 +45,13 @@
         android:name="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.HintCardsDialogFragment"
         android:label="HintCardsDialogFragment"
         tools:layout="@layout/dialog_cards_hint_layout"/>
+    <dialog
+        android:id="@+id/editGoalDialogFragment"
+        android:name="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.EditGoalDialogFragment"
+        android:label="EditGoalDialogFragment"
+        tools:layout="@layout/dialog_edit_goal_layout">
+        <argument
+            android:name="goalInfo"
+            app:argType="com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity" />
+    </dialog>
 </navigation>

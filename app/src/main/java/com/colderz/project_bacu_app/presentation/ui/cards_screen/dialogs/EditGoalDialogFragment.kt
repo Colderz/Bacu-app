@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.colderz.project_bacu_app.R
-import com.colderz.project_bacu_app.databinding.DialogCardsHintLayoutBinding
+import com.colderz.project_bacu_app.databinding.DialogEditGoalLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class HintCardsDialogFragment : BottomSheetDialogFragment() {
+@AndroidEntryPoint
+class EditGoalDialogFragment : BottomSheetDialogFragment() {
+    private val viewModel: EditGoalViewModel by viewModels()
 
-    private var _binding: DialogCardsHintLayoutBinding? = null
+    private var _binding: DialogEditGoalLayoutBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,17 +22,19 @@ class HintCardsDialogFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DialogCardsHintLayoutBinding.inflate(inflater, container, false)
+        _binding = DialogEditGoalLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupListener()
+        initBinding()
     }
 
-    private fun setupListener() {
-        binding.dialogOk.setOnClickListener { this.dismiss() }
+    private fun initBinding() {
+        binding.apply {
+            dialogEditGoalCancel.setOnClickListener { this@EditGoalDialogFragment.dismiss() }
+        }
     }
 
     override fun getTheme(): Int {

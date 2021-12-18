@@ -50,7 +50,7 @@
             app:hintTextColor="@color/color_orange_main"
             app:startIconDrawable="@drawable/ic_cash_card"
             app:startIconTint="@color/color_orange_main"
-            app:suffixText=" zł"
+            app:suffixText="@string/pln"
             app:suffixTextColor="@color/color_orange_main">
 
             <com.google.android.material.textfield.TextInputEditText

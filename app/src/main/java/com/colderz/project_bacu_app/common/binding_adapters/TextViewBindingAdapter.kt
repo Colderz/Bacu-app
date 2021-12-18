@@ -30,19 +30,19 @@ fun TextView.setGoalBalance(balance: String, goal: String) {
 
 @BindingAdapter("intervalAmount")
 fun TextView.setIntervalAmount(intervalAmount: String) {
-    this.text = "$intervalAmount zł"
+    this.text = "$intervalAmount PLN"
 }
 
 @BindingAdapter("interval")
 fun TextView.setInterval(interval: String) {
     when (interval) {
-        "1" -> {
+        resources.getString(R.string.one) -> {
             this.text = context.getString(R.string.card_info_interval_day)
         }
-        "2" -> {
+        resources.getString(R.string.two) -> {
             this.text = context.getString(R.string.card_info_interval_week)
         }
-        "3" -> {
+        resources.getString(R.string.three) -> {
             this.text = context.getString(R.string.card_info_interval_month)
         }
     }
