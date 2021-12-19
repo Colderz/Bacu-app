@@ -14,7 +14,7 @@ class CustomProgressIndicator @JvmOverloads constructor(
         CustomProgressIndicatorLayoutBinding.inflate(
             LayoutInflater.from(context), this, true
         )
-    private var amountOfCircles = 5
+    private val DEFAULT_AMOUNT_OF_CIRCLES = 5
 
     init {
         updateProgressView(0)
@@ -22,19 +22,14 @@ class CustomProgressIndicator @JvmOverloads constructor(
 
     private fun drawCircles() {
         binding.circleContainer.removeAllViews()
-        for (i in 1..amountOfCircles) {
+        for (i in 1..DEFAULT_AMOUNT_OF_CIRCLES) {
             binding.circleContainer.addView(CustomEmptyDot(context))
         }
     }
 
-    fun setAmountOfCircles(amount: Int) {
-        amountOfCircles = amount
-        updateProgressView(0)
-    }
-
     fun updateProgressView(step: Int) {
         drawCircles()
-        binding.circleContainer.removeViewAt(step)
+        binding.circleContainer.removeViewAt(step )
         binding.circleContainer.addView(CustomFillDot(context), step)
     }
 }

@@ -86,5 +86,9 @@
 
     <!-- Edit goal dialog -->
     <string name="dialog_edit_goal__title">Edytujesz cel</string>
+    <string name="actual_balance">Aktualny stan celu:\u0020</string>
+    <string name="slash">/</string>
+    <string name="space_pln">\u0020PLN</string>
+    <string name="plus">+\u0020</string>
 
 </resources>
