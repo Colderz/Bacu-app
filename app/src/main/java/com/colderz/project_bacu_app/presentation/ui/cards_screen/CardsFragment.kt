@@ -7,25 +7,29 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.colderz.project_bacu_app.R
 import com.colderz.project_bacu_app.databinding.FragmentCardsBinding
 import com.colderz.project_bacu_app.presentation.ui.cards_screen.adapters.CardPagerAdapter
+import com.colderz.project_bacu_app.presentation.ui.cards_screen.adapters.HistoricalGoalRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
 @AndroidEntryPoint
 class CardsFragment : Fragment() {
     private val TAG: String = CardsFragment::class.java.simpleName
-    private lateinit var adapter: CardPagerAdapter
+    private lateinit var pagerAdapter: CardPagerAdapter
+    private lateinit var recyclerAdapter: HistoricalGoalRecyclerAdapter
 
     private lateinit var viewPager: ViewPager2
     private var _binding: FragmentCardsBinding? = null
     private val binding get() = _binding!!
 
     var actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     private val viewModel: CardsViewModel by viewModels()
 
@@ -40,8 +44,14 @@ class CardsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBinding()
         initObservers()
+        initView()
+    }
+
+    private fun initView() {
+        initBinding()
+        linearLayoutManager = LinearLayoutManager(context)
+        binding.fragmentCardRecyclerView.layoutManager = linearLayoutManager
     }
 
     private fun initBinding() {
@@ -72,6 +82,7 @@ class CardsFragment : Fragment() {
         })
         viewModel.allGoalFromDatabase.observe(viewLifecycleOwner, {
             configureViewPager(binding.categoryTitle!!)
+            configureRecyclerAdapter(binding.categoryTitle!!)
         })
         viewModel.navigateToHintDialog.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let {
@@ -84,13 +95,23 @@ class CardsFragment : Fragment() {
                 findNavController().navigate(action)
         }
         })
+        viewModel.navigateToGoalSuccess.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                findNavController().navigate(R.id.action_cardsfragment_to_successgoaldialog)
+            }
+        })
+    }
+
+    private fun configureRecyclerAdapter(categoryTitle: String) {
+        val prepareHistoricalList = viewModel.prepareHistoricalGoalData(categoryTitle)
+        recyclerAdapter = HistoricalGoalRecyclerAdapter(prepareHistoricalList)
     }
 
     private fun configureViewPager(category: String) {
         viewPager = binding.imagesView
         val prepareCategoryList = viewModel.prepareCorrectViewPagerData(category)
-        adapter = CardPagerAdapter(prepareCategoryList, viewModel)
-        viewPager.adapter = adapter
+        pagerAdapter = CardPagerAdapter(prepareCategoryList, viewModel)
+        viewPager.adapter = pagerAdapter
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
         viewPager.offscreenPageLimit = 3

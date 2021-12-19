@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="goal"
+            type="com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_marginVertical="5dp"
+        android:focusable="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#BEE2E1"
+            app:cardCornerRadius="8dp"
+            android:layout_marginHorizontal="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@drawable/ic_done_goal" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/currency_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="2dp"
+            android:textColor="#15544F"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:text="@{goal.name}"
+            app:layout_constraintStart_toEndOf="@+id/card_view"
+            app:layout_constraintTop_toTopOf="@+id/card_view"
+            tools:text="Nowy samochód" />
+
+        <TextView
+            android:id="@+id/currency_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/done_date + goal.deadline}"
+            android:textColor="#15544F"
+            android:textSize="12sp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/card_view"
+            app:layout_constraintStart_toStartOf="@+id/currency_name"
+            app:layout_constraintTop_toBottomOf="@+id/currency_name" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/currency_rate"
+            app:layout_constraintStart_toEndOf="@+id/currency_name" />
+
+        <TextView
+            android:id="@+id/currency_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@{goal.balance + @string/space_pln}"
+            tools:text="397 PLN"
+            android:textColor="#15544F"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/currency_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/currency_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

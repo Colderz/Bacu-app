@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_cardsfragment_to_editgoaldialog"
             app:destination="@+id/editGoalDialogFragment" />
+        <action
+            android:id="@+id/action_cardsfragment_to_successgoaldialog"
+            app:destination="@+id/goalSuccessDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -54,4 +57,9 @@
             android:name="goalInfo"
             app:argType="com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity" />
     </dialog>
+    <dialog
+        android:id="@+id/goalSuccessDialogFragment"
+        android:name="com.colderz.project_bacu_app.presentation.ui.cards_screen.dialogs.GoalSuccessDialogFragment"
+        android:label="GoalSuccessDialogFragment"
+        tools:layout="@layout/dialog_success_goal_layout"/>
 </navigation>

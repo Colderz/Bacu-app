@@ -3,15 +3,20 @@ package com.colderz.project_bacu_app.presentation.ui.cards_screen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.colderz.project_bacu_app.common.Event
 import com.colderz.project_bacu_app.data.database.model.FinanceGoalEntity
+import com.colderz.project_bacu_app.domain.use_case.AddNewGoalUseCase
 import com.colderz.project_bacu_app.domain.use_case.GetAllGoalsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CardsViewModel @Inject constructor(
-    private val getAllGoalsUseCase: GetAllGoalsUseCase
+    private val getAllGoalsUseCase: GetAllGoalsUseCase,
+    private val addNewGoalUseCase: AddNewGoalUseCase
 ) : ViewModel() {
 
     private val _allGoalsFromDatabase = getAllGoalsUseCase()
@@ -38,6 +43,10 @@ class CardsViewModel @Inject constructor(
     val navigateToEditGoalDialog: LiveData<Event<FinanceGoalEntity>>
         get() = _navigateToEditGoalDialog
 
+    private val _navigateToGoalSuccess = MutableLiveData<Event<Boolean>>()
+    val navigateToGoalSuccess: LiveData<Event<Boolean>>
+        get() = _navigateToGoalSuccess
+
     fun goToAddGoalDialog() {
         _navigateToAddGoalDialog.value = Event(true)
     }
@@ -58,9 +67,38 @@ class CardsViewModel @Inject constructor(
         _navigateToEditGoalDialog.value = Event(goal)
     }
 
+    fun navigateToGoalSuccessDialog(goal: FinanceGoalEntity) {
+        _navigateToGoalSuccess.value = Event(true)
+        viewModelScope.launch(Dispatchers.IO) {
+            addNewGoalUseCase(
+                FinanceGoalEntity(
+                    "historical",
+                    goal.category,
+                    goal.amountGoal,
+                    goal.balance,
+                    goal.interval,
+                    goal.deadline,
+                    goal.intervalAmount,
+                    goal.name
+                )
+            )
+        }
+    }
+
     fun prepareCorrectViewPagerData(
         goalCategory: String,
     ): List<FinanceGoalEntity>? {
-        return _allGoalsFromDatabase.value?.filter { it.category == goalCategory && it.type == "actual" }
+        return filterListOfGoal(goalCategory, "actual")
+    }
+
+    fun prepareHistoricalGoalData(category: String): List<FinanceGoalEntity>? {
+        return filterListOfGoal(category, "historical")
+    }
+
+    fun filterListOfGoal(
+        goalCategory: String,
+        goalType: String
+    ): List<FinanceGoalEntity>? {
+        return _allGoalsFromDatabase.value?.filter { it.category == goalCategory && it.type == goalType }
     }
 }

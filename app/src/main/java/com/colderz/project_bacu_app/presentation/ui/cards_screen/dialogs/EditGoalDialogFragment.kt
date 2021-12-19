@@ -43,6 +43,11 @@ class EditGoalDialogFragment : BottomSheetDialogFragment() {
                 binding.balanceOfGoal = tempBalance.toString()
             }
         })
+        viewModel.endOfEdit.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                this.dismiss()
+            }
+        })
     }
 
     private fun initBinding() {

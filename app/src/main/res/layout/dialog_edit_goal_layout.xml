@@ -83,8 +83,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 touchListener="@{false}"
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:layout_width="98dp"
+                android:layout_height="98dp"
                 android:onClick="@{() -> editGoalViewModel.updateTempBalance(goal.intervalAmount)}"
                 android:layout_gravity="center">
 
@@ -102,7 +102,7 @@
                     android:gravity="center"
                     android:text="@{@string/plus + goal.intervalAmount}"
                     android:textColor="@color/color_orange_main"
-                    android:textSize="28sp"
+                    android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
                     app:layout_constraintTop_toTopOf="@+id/imageView" />
@@ -176,6 +176,7 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
+                android:onClick="@{() -> editGoalViewModel.updateGoal(goal, balanceOfGoal)}"
                 android:background="@drawable/rounded_orange_button"
                 android:backgroundTint="@color/color_primary"
                 android:clickable="true"

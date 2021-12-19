@@ -83,6 +83,7 @@
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
+    <string name="done_date">Zrelizowano:\u0020</string>
 
     <!-- Edit goal dialog -->
     <string name="dialog_edit_goal__title">Edytujesz cel</string>
