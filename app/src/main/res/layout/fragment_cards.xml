@@ -272,8 +272,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="80dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="75dp"
+                android:layout_marginBottom="70dp"
                 tools:listitem="@layout/historical_goal_card_layout"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

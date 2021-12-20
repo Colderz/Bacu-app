@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CardsViewModel @Inject constructor(
-    private val getAllGoalsUseCase: GetAllGoalsUseCase,
+    getAllGoalsUseCase: GetAllGoalsUseCase,
     private val addNewGoalUseCase: AddNewGoalUseCase
 ) : ViewModel() {
 
@@ -95,7 +95,7 @@ class CardsViewModel @Inject constructor(
         return filterListOfGoal(category, "historical")
     }
 
-    fun filterListOfGoal(
+    private fun filterListOfGoal(
         goalCategory: String,
         goalType: String
     ): List<FinanceGoalEntity>? {

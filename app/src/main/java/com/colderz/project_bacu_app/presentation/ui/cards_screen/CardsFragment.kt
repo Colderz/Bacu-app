@@ -103,8 +103,9 @@ class CardsFragment : Fragment() {
     }
 
     private fun configureRecyclerAdapter(categoryTitle: String) {
-        val prepareHistoricalList = viewModel.prepareHistoricalGoalData(categoryTitle)
-        recyclerAdapter = HistoricalGoalRecyclerAdapter(prepareHistoricalList)
+        val preparedHistoricalList = viewModel.prepareHistoricalGoalData(categoryTitle)
+        recyclerAdapter = HistoricalGoalRecyclerAdapter(preparedHistoricalList)
+        binding.fragmentCardRecyclerView.adapter = recyclerAdapter
     }
 
     private fun configureViewPager(category: String) {
@@ -141,26 +142,31 @@ class CardsFragment : Fragment() {
                 actualCardsFragmentState = CardsFragmentState.HOME_PAGE
                 binding.categoryTitle = getString(R.string.title_home)
                 configureViewPager(getString(R.string.title_home))
+                configureRecyclerAdapter(getString(R.string.title_home))
             }
             CardsFragmentState.HOME_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRAVEL_PAGE
                 binding.categoryTitle = getString(R.string.title_travel)
                 configureViewPager(getString(R.string.title_travel))
+                configureRecyclerAdapter(getString(R.string.title_travel))
             }
             CardsFragmentState.TRAVEL_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.ELECTRONIC_PAGE
                 binding.categoryTitle = getString(R.string.title_electronic)
                 configureViewPager(getString(R.string.title_electronic))
+                configureRecyclerAdapter(getString(R.string.title_electronic))
             }
             CardsFragmentState.ELECTRONIC_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
                 binding.categoryTitle = getString(R.string.title_gifts)
                 configureViewPager(getString(R.string.title_gifts))
+                configureRecyclerAdapter(getString(R.string.title_gifts))
             }
             CardsFragmentState.GIFTS_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
                 binding.categoryTitle = getString(R.string.title_transport)
                 configureViewPager(getString(R.string.title_transport))
+                configureRecyclerAdapter(getString(R.string.title_transport))
             }
         }
         binding.goalsCategoryState = actualCardsFragmentState
@@ -172,26 +178,31 @@ class CardsFragment : Fragment() {
                 actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
                 binding.categoryTitle = getString(R.string.title_gifts)
                 configureViewPager(getString(R.string.title_gifts))
+                configureRecyclerAdapter(getString(R.string.title_gifts))
             }
             CardsFragmentState.HOME_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
                 binding.categoryTitle = getString(R.string.title_transport)
                 configureViewPager(getString(R.string.title_transport))
+                configureRecyclerAdapter(getString(R.string.title_transport))
             }
             CardsFragmentState.TRAVEL_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.HOME_PAGE
                 binding.categoryTitle = getString(R.string.title_home)
                 configureViewPager(getString(R.string.title_home))
+                configureRecyclerAdapter(getString(R.string.title_home))
             }
             CardsFragmentState.ELECTRONIC_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRAVEL_PAGE
                 binding.categoryTitle = getString(R.string.title_travel)
                 configureViewPager(getString(R.string.title_travel))
+                configureRecyclerAdapter(getString(R.string.title_travel))
             }
             CardsFragmentState.GIFTS_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.ELECTRONIC_PAGE
                 binding.categoryTitle = getString(R.string.title_electronic)
                 configureViewPager(getString(R.string.title_electronic))
+                configureRecyclerAdapter(getString(R.string.title_electronic))
             }
         }
         binding.apply {

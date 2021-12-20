@@ -21,7 +21,7 @@ class HistoricalGoalRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return items?.size ?: 5
+        return items?.size ?: 0
     }
 
     inner class ViewHolder(val binding: HistoricalGoalCardLayoutBinding) :
