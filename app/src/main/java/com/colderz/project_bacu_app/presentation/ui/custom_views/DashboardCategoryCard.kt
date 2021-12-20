@@ -10,8 +10,8 @@ import com.colderz.project_bacu_app.databinding.DashboardCategoryCardLayoutBindi
 class DashboardCategoryCard @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    last: Boolean,
     title: String,
+    isSelected: Boolean,
     drawable: Drawable? = null
 ) : ConstraintLayout(context, attrs) {
     private val binding: DashboardCategoryCardLayoutBinding =
@@ -20,9 +20,9 @@ class DashboardCategoryCard @JvmOverloads constructor(
         )
 
     init {
-        binding.isLast = last
         binding.categoryName = title
         binding.imageId = drawable
+        selectCard(isSelected)
     }
 
     public fun selectCard(isSelected: Boolean) {

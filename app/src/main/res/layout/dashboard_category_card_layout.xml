@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="isLast"
-            type="boolean" />
-
-        <variable
             name="isSelected"
             type="boolean" />
 
@@ -32,6 +28,7 @@
         android:focusable="true">
 
         <androidx.cardview.widget.CardView
+            touchListener="@{true}"
             android:layout_width="65dp"
             android:layout_height="105dp"
             android:backgroundTint="@{isSelected ? @color/color_orange_main : @color/card_background_color}"
@@ -75,7 +72,7 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="@{categoryName}"
-                    android:textColor="#7F8A8A"
+                    android:textColor="@{isSelected ? @color/color_white : @color/main_color_text}"
                     android:textSize="13sp"
                     app:layout_constraintTop_toBottomOf="@+id/category_card_type_image"
                     tools:text="Transport" />

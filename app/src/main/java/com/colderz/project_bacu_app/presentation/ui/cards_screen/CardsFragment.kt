@@ -163,6 +163,12 @@ class CardsFragment : Fragment() {
                 configureRecyclerAdapter(getString(R.string.title_gifts))
             }
             CardsFragmentState.GIFTS_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.HOBBY_PAGE
+                binding.categoryTitle = getString(R.string.title_hobby)
+                configureViewPager(getString(R.string.title_hobby))
+                configureRecyclerAdapter(getString(R.string.title_hobby))
+            }
+            CardsFragmentState.HOBBY_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
                 binding.categoryTitle = getString(R.string.title_transport)
                 configureViewPager(getString(R.string.title_transport))
@@ -175,10 +181,10 @@ class CardsFragment : Fragment() {
     fun previousGoalsCategory() {
         when (actualCardsFragmentState) {
             CardsFragmentState.TRANSPORT_PAGE -> {
-                actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
-                binding.categoryTitle = getString(R.string.title_gifts)
-                configureViewPager(getString(R.string.title_gifts))
-                configureRecyclerAdapter(getString(R.string.title_gifts))
+                actualCardsFragmentState = CardsFragmentState.HOBBY_PAGE
+                binding.categoryTitle = getString(R.string.title_hobby)
+                configureViewPager(getString(R.string.title_hobby))
+                configureRecyclerAdapter(getString(R.string.title_hobby))
             }
             CardsFragmentState.HOME_PAGE -> {
                 actualCardsFragmentState = CardsFragmentState.TRANSPORT_PAGE
@@ -204,6 +210,12 @@ class CardsFragment : Fragment() {
                 configureViewPager(getString(R.string.title_electronic))
                 configureRecyclerAdapter(getString(R.string.title_electronic))
             }
+            CardsFragmentState.HOBBY_PAGE -> {
+                actualCardsFragmentState = CardsFragmentState.GIFTS_PAGE
+                binding.categoryTitle = getString(R.string.title_gifts)
+                configureViewPager(getString(R.string.title_gifts))
+                configureRecyclerAdapter(getString(R.string.title_gifts))
+            }
         }
         binding.apply {
             goalsCategoryState = actualCardsFragmentState
@@ -215,7 +227,8 @@ class CardsFragment : Fragment() {
         HOME_PAGE,
         TRAVEL_PAGE,
         ELECTRONIC_PAGE,
-        GIFTS_PAGE
+        GIFTS_PAGE,
+        HOBBY_PAGE
     }
 
     override fun onDestroyView() {

@@ -24,12 +24,12 @@ class DashboardCategorySection @JvmOverloads constructor(
 
     private fun prepareSection() {
         val sectionCards: List<View> = listOf(
-            DashboardCategoryCard(context, attrs = null, false, "Transport", ContextCompat.getDrawable(context, R.drawable.ic_transport)),
-            DashboardCategoryCard(context, attrs = null, false, "Dom", ContextCompat.getDrawable(context, R.drawable.ic_home)),
-            DashboardCategoryCard(context, attrs = null, false, "Podróże", ContextCompat.getDrawable(context, R.drawable.ic_journey)),
-            DashboardCategoryCard(context, attrs = null, false, "Elektronika", ContextCompat.getDrawable(context, R.drawable.ic_electronics)),
-            DashboardCategoryCard(context, attrs = null, false, "Prezenty", ContextCompat.getDrawable(context, R.drawable.ic_gift)),
-            DashboardCategoryCard(context, attrs = null, true, "Dodaj własne", ContextCompat.getDrawable(context, R.drawable.ic_plus))
+            DashboardCategoryCard(context, attrs = null, "Transport", true, ContextCompat.getDrawable(context, R.drawable.ic_transport)),
+            DashboardCategoryCard(context, attrs = null, "Dom", false, ContextCompat.getDrawable(context, R.drawable.ic_home)),
+            DashboardCategoryCard(context, attrs = null, "Podróże", false, ContextCompat.getDrawable(context, R.drawable.ic_journey)),
+            DashboardCategoryCard(context, attrs = null, "Elektronika", false, ContextCompat.getDrawable(context, R.drawable.ic_electronics)),
+            DashboardCategoryCard(context, attrs = null, "Prezenty", false, ContextCompat.getDrawable(context, R.drawable.ic_gift)),
+            DashboardCategoryCard(context, attrs = null, "Hobby", false, ContextCompat.getDrawable(context, R.drawable.ic_hobby))
         )
         sectionCards.forEach { card -> configureSectionCard(card) }
     }
@@ -38,5 +38,12 @@ class DashboardCategorySection @JvmOverloads constructor(
         binding.categorySectionContainer.addView(card)
     }
 
-
+    enum class State {
+        TRANSPORT,
+        HOUSE,
+        TRAVEL,
+        ELECTRONIC,
+        GIFTS,
+        HOBBY
+    }
 }
